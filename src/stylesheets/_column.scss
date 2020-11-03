@@ -1,0 +1,24 @@
+.column {
+  &__column {
+    width: 200px;
+    height: 200px;
+    background-color: pink;
+    border: 1px solid black;
+    margin-left: 1%;
+  }
+
+  &__h3 {
+    margin-top: 5px;
+    margin-bottom: 15px;
+  }
+  &__ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    height: 70%;
+  }
+}
