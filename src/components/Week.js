@@ -65,19 +65,43 @@ const Week = () => {
   
   const [weekColumns, setWeekColumns]= useState(initialData);
   console.log(weekColumns);
-  // console.log(weekColumns.columnOrder);
 
-    const paintColumns = () => {
-      console.log('me estan pintando');
-      weekColumns.columnOrder.map(columnId=>{
-        const column = weekColumns.columns[columnId];
-        const tasks = column.taskIds.map(taskId=>weekColumns.tasks[taskId]);
+  //   const paintColumns = () => {
+  //     console.log('me estan pintando');
+  //     weekColumns.columnOrder.map(columnId=>{
+  //       const column = weekColumns.columns[columnId];
+  //       const tasks = column.taskIds.map(taskId=>weekColumns.tasks[taskId]);
         
-        console.log(column.title);
-      return <Column key={column.id} column={column} tasks={tasks} />;
-    });
-  };
+  //       console.log(column.title);
+  //     return <Column key={column.id} column={column} tasks={tasks} />;
+  //   });
+  // };
 
+  let onDragEnd = (result)=>{
+    const {destination, source, draggableId} = result
+    if (!destination){
+      return;
+    }
+    if(destination.droppableId === source.droppableId && destination.index === source.index){
+      return;
+    }
+    const column = weekColumns.columns[source.droppableId];//que columna es
+    const newTaskIds = Array.from(column.taskIds);//nuevo array con sus dos task en este caso
+    newTaskIds.splice(source.index, 1);//eliminamos un elemento del array
+    newTaskIds.splice(destination.index, 0, draggableId); //colocamos el elemento que viene, no elminamos, sustituimos
+    const newColumn = { //creamos una nueva columna con los elementos nuevos para poder pintarla
+      ...column,
+      taskIds: newTaskIds,
+    };
+    const newweekColumns = { //hay que sustituir los datos nuevos por los antiguos en el estado
+      ...weekColumns,
+      columns:{
+        ...weekColumns.columns,
+        [newColumn.id]:newColumn,
+      }
+    };
+    setWeekColumns(newweekColumns); //subimos estado nuevo
+  }
   return (
     <div className="week__table">
       
@@ -86,6 +110,7 @@ const Week = () => {
                 <p>CENA</p>
               </div>
             
+<DragDropContext onDragEnd={onDragEnd}>
             
               <div className="week__container">
                 
@@ -93,7 +118,7 @@ const Week = () => {
         const column = weekColumns.columns[columnId];
         const task = column.taskIds.map(taskId =>weekColumns.tasks[taskId] )
 
-        //otra manera de hacerlo más larga y peor
+        //otra manera de hacerlo más larga y peor y la otra forma es con la función paintColumns de arriba
 //        let tasks= column.taskIds;
 //       console.log(tasks);
 //       let taskInfo= [];
@@ -112,10 +137,9 @@ const Week = () => {
   
   }
   
-                {/* <DragDropContext onDropEnd={}>
 
-</DragDropContext> */}
               </div>
+</DragDropContext>
             
 
     </div>

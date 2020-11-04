@@ -1,5 +1,6 @@
 import React from 'react'
 import Task from './Task'
+import {Droppable} from 'react-beautiful-dnd';
 
 function Column (props) {
   console.log(props);
@@ -7,11 +8,17 @@ function Column (props) {
   return (
     <div className="column__column">
       <h3 className="column__h3">{props.column.title}</h3>
-      < ul className="column__ul">{
-        props.tasks.map(task => <Task key={task.id} task={task}/>
+      <Droppable droppableId={props.column.id}>
+{provided =>( //provided is an object
+      < ul className="column__ul" ref = {provided.innerRef}{...provided.droppableProps}>
+
+        {
+        props.tasks.map((task, index) => <Task key={task.id} task={task} index={index}/>
           )
         }
       </ul>
+)}
+      </Droppable>
     </div>
   )
 }
