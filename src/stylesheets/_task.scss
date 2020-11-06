@@ -9,4 +9,22 @@
     align-items: center;
     justify-content: center;
   }
+  &__dragTrue {
+    background-color: aquamarine;
+  }
+  &__dragFalse {
+    background-color: pink;
+  }
+
+  // &__liFalse {
+  //   width: 95%;
+  //   list-style: none;
+  //   border: 1px solid black;
+  //   height: 40%;
+  //   margin-bottom: 2px;
+  //   display: flex;
+  //   align-items: center;
+  //   justify-content: center;
+  //   background-color: pink;
+  // }
 }

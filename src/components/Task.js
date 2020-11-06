@@ -5,9 +5,9 @@ const Task = (props) => {
 
   return (
     <Draggable draggableId={props.task.id} index={props.index}>
-{(provided)=>(
+{(provided, snapshot)=>(
 
-      <li className ="task__li" ref={provided.innerRef} {...provided.draggableProps}{...provided.dragHandleProps}>{props.task.content}
+<li className={`${"task__li"} ${snapshot.isDragging ? "task__dragTrue" : "task__dragFalse"}`} ref={provided.innerRef} {...provided.draggableProps}{...provided.dragHandleProps} isDragging={snapshot.isDragging} >{props.task.content}
      </li>
 )}
     </Draggable>
@@ -15,3 +15,5 @@ const Task = (props) => {
 }
 
 export default Task
+// style={{ backgroundColor: snapshot.isDraggingOver ? 'blue' : 'grey' }}
+// className={snapshot.isDragging ? "task__dragTrue" : "task_dragFalse"}

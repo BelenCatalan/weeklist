@@ -1,7 +1,7 @@
 .column {
   &__column {
     width: 200px;
-    height: 200px;
+    height: 100%;
     background-color: pink;
     border: 1px solid black;
     margin-left: 1%;
@@ -19,6 +19,14 @@
     align-items: center;
     justify-content: center;
 
-    height: 70%;
+    height: 90%;
+  }
+  &__dragTrue {
+    transition: background-color 0.4s ease;
+    background-color: white;
+  }
+  &__dragFalse {
+    transition: background-color 0.4s ease;
+    background-color: pink;
   }
 }
