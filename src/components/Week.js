@@ -77,7 +77,11 @@ const Week = () => {
   //   });
   // };
 
+  const onDragStart = () =>{
+    document.body.style.color = 'grey';
+  }
   let onDragEnd = (result)=>{
+    document.body.style.color='inherit';
     const {destination, source, draggableId} = result
     if (!destination){
       return;
@@ -110,7 +114,7 @@ const Week = () => {
                 <p>CENA</p>
               </div>
             
-<DragDropContext onDragEnd={onDragEnd}>
+<DragDropContext onDragEnd={onDragEnd} onDragStart={onDragStart}>
             
               <div className="week__container">
                 
