@@ -29,6 +29,22 @@ let initialData = {
       title: 'Higiene personal/casa',
       taskIds: ['task-92','task-93','task-94','task-95','task-96','task-97','task-98','task-99','task-100','task-101','task-102','task-103','task-104','task-105','task-106','task-107','task-108','task-109','task-110','task-111'],
     },
+    'column-6':{
+      id: 'column-6',
+      title: 'Frutería',
+      taskIds: [],
+    },
+    'column-7':{
+      id: 'column-7',
+      title: 'Pesca/Carni/Polle',
+      taskIds: [],
+    },
+    'column-8':{
+      id: 'column-8',
+      title: 'Corte',
+      taskIds: [],
+    },
+
   },
   tasks: {
     'task-1':{id:'task-1', content:'Calabacín'},
@@ -150,7 +166,7 @@ let initialData = {
 
 
   },
-  columnOrder : ['column-1', 'column-2', 'column-3', 'column-4' ],
+  columnOrder : ['column-1', 'column-2', 'column-3', 'column-4','column-5','column-6','column-7','column-8'],
 };
 
 
