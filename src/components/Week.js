@@ -89,23 +89,55 @@ const Week = () => {
     if(destination.droppableId === source.droppableId && destination.index === source.index){
       return;
     }
-    const column = weekColumns.columns[source.droppableId];//que columna es
-    const newTaskIds = Array.from(column.taskIds);//nuevo array con sus dos task en este caso
-    newTaskIds.splice(source.index, 1);//eliminamos un elemento del array
-    newTaskIds.splice(destination.index, 0, draggableId); //colocamos el elemento que viene, no elminamos, sustituimos
-    const newColumn = { //creamos una nueva columna con los elementos nuevos para poder pintarla
-      ...column,
-      taskIds: newTaskIds,
-    };
-    const newweekColumns = { //hay que sustituir los datos nuevos por los antiguos en el estado
-      ...weekColumns,
-      columns:{
-        ...weekColumns.columns,
-        [newColumn.id]:newColumn,
-      }
-    };
-    setWeekColumns(newweekColumns); //subimos estado nuevo
+    const start = weekColumns.columns[source.droppableId];//que columna es, ampliamos a en que columna empieza
+    const finish = weekColumns.columns[destination.droppableId]; // y en qué columna acaba
+
+    if(start === finish){
+
+      const newTaskIds = Array.from(start.taskIds);//nuevo array con sus dos task en este caso
+      newTaskIds.splice(source.index, 1);//eliminamos un elemento del array
+      newTaskIds.splice(destination.index, 0, draggableId); //colocamos el elemento que viene, no elminamos, sustituimos
+      const newColumn = { //creamos una nueva columna con los elementos nuevos para poder pintarla
+        ...start,
+        taskIds: newTaskIds,
+      };
+      const newweekColumns = { //hay que sustituir los datos nuevos por los antiguos en el estado
+        ...weekColumns,
+        columns:{
+          ...weekColumns.columns,
+          [newColumn.id]:newColumn,
+        }
+      };
+      setWeekColumns(newweekColumns); //subimos estado nuevo
+    }
+    if(start !== finish){
+
+
+      //mover entre días
+      const startTaskIds = Array.from(start.taskIds);
+      startTaskIds.splice(source.index,1);
+      const newStart = {
+        ...start,
+        taskIds: startTaskIds,
+      };
+      const finishTaskIds = Array.from(finish.taskIds);
+      finishTaskIds.splice(destination.index, 0, draggableId);
+      const newFinish = {
+        ...finish,
+        taskIds: finishTaskIds,
+      };
+      const newweekColumns = {
+        ...weekColumns,
+        columns:{
+          ...weekColumns.columns,
+          [newStart.id]: newStart,
+          [newFinish.id]: newFinish,
+        }
+      };
+      setWeekColumns(newweekColumns);
+    }
   }
+
   return (
     <div className="week__table">
       
