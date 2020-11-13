@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {DragDropContext, Droppable, Draggable} from 'react-beautiful-dnd';
-import Column from './Column';
+import Columnfood from './Columnfood';
 
 let initialData = {
   columns: {
@@ -187,11 +187,16 @@ const Food = () => {
   //   });
   // };
 
-  const onDragStart = () =>{
+  const onDragStart = (start) =>{
     document.body.style.color = 'grey';
+    // const homeIndex = weekColumns.columnOrder.indexOf(start.soource.droppableId);
+    // setWeekColumns({ homeIndex,});
   }
+
   let onDragEnd = (result)=>{
     document.body.style.color='inherit';
+
+    // setWeekColumns({ homeIndex: null,});
     const {destination, source, draggableId} = result
     if (!destination){
       return;
@@ -245,8 +250,10 @@ const Food = () => {
         }
       };
       setWeekColumns(newweekColumns);
+      
     }
   }
+  
 
   return (
     <div className="food__table">
@@ -260,9 +267,10 @@ const Food = () => {
             
               <div className="food__container">
                 
-             {weekColumns.columnOrder.map(columnId=>{
+             {weekColumns.columnOrder.map((columnId, index) => {
         const column = weekColumns.columns[columnId];
-        const task = column.taskIds.map(taskId =>weekColumns.tasks[taskId] )
+        const task = column.taskIds.map(taskId =>weekColumns.tasks[taskId] );
+        const isDropDisabled = index < 5;
 
         //otra manera de hacerlo más larga y peor y la otra forma es con la función paintColumns de arriba
 //        let tasks= column.taskIds;
@@ -277,7 +285,7 @@ const Food = () => {
 //   taskInfo.push(taskOne);
   
       
-      return <Column key={column.id} column={column} tasks={task}/>
+      return <Columnfood key={column.id} column={column} tasks={task} isDropDisabled={isDropDisabled} weekColumns={weekColumns}/>
     
     })
   

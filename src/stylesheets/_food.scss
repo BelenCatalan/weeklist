@@ -1,0 +1,25 @@
+.food {
+  &__table {
+    display: flex;
+    flex-direction: row;
+  }
+  &__dayMoment {
+    margin-top: 6%;
+    padding-left: 2%;
+    padding-right: 1%;
+  }
+  &__container {
+    width: 90%;
+    height: 110vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border: 1px, solid, black;
+    box-shadow: 1px 5px 3px rgba(1, 1, 1, 0.2);
+    border-radius: 5px;
+    margin-top: 2%;
+    margin-left: 4%;
+    margin-bottom: 2%;
+    background-color: rgba(255, 255, 255, 0.8);
+  }
+}

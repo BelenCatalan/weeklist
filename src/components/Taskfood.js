@@ -1,7 +1,10 @@
 import React from 'react'
 import {Draggable} from 'react-beautiful-dnd';
 
-const Task = (props) => {
+const Taskfood = (props) => {
+  console.log(props);
+
+ 
 
   return (
     <Draggable draggableId={props.task.id} index={props.index}>
@@ -15,6 +18,4 @@ const Task = (props) => {
   )
 }
 
-export default Task
-// style={{ backgroundColor: snapshot.isDraggingOver ? 'blue' : 'grey' }}
-// className={snapshot.isDragging ? "task__dragTrue" : "task_dragFalse"}
+export default Taskfood
