@@ -1,8 +1,9 @@
 import React from 'react'
 import {Draggable} from 'react-beautiful-dnd';
 
-const Taskfood = (props) => {
-  
+const TaskList = (props) => {
+
+ 
 
   return (
     
@@ -14,14 +15,15 @@ const Taskfood = (props) => {
 
 
   {props.task.content}
-  
+  <div><button>x</button></div>
+
   
      </li>
 
 )}
     </Draggable>
+)
   
-  )
 }
 
-export default Taskfood
+export default TaskList

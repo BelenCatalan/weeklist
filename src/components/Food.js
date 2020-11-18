@@ -195,6 +195,7 @@ const Food = () => {
 
   let onDragEnd = (result)=>{
     document.body.style.color='inherit';
+    
 
     // setWeekColumns({ homeIndex: null,});
     const {destination, source, draggableId} = result
@@ -250,9 +251,30 @@ const Food = () => {
         }
       };
       setWeekColumns(newweekColumns);
+
+      const list = weekColumns.columns;
+  const merg = list.['column-6'].taskIds;
+
+       if( list.['column-6'].taskIds.length !== 0 || list.['column-7'].taskIds.length !== 0 || list.['column-8'].taskIds.length !== 0 ){
+  return<button>x</button>
+          
+//       let button= document.createElement('button');
+//       button.innerHTML='x';
+//       button.onclik = function(){
+//         console.log('here be dragons');
+//       }
+//       let final = document.querySelector('.js-button')
+//       final.appendChild(button);
       
+// button.addEventListener('click',)
+         }
+          
+         
+             
+  
+        }
     }
-  }
+  
   
 
   return (
@@ -268,8 +290,8 @@ const Food = () => {
               <div className="food__container">
                 
              {weekColumns.columnOrder.map((columnId, index) => {
-        const column = weekColumns.columns[columnId];
-        const task = column.taskIds.map(taskId =>weekColumns.tasks[taskId] );
+               const column = weekColumns.columns[columnId];            
+     const task = column.taskIds.map(taskId =>weekColumns.tasks[taskId] );
         const isDropDisabled = index < 5;
 
         //otra manera de hacerlo más larga y peor y la otra forma es con la función paintColumns de arriba
@@ -286,7 +308,7 @@ const Food = () => {
   
       
       return <Columnfood key={column.id} column={column} tasks={task} isDropDisabled={isDropDisabled} weekColumns={weekColumns}/>
-    
+             
     })
   
   }
