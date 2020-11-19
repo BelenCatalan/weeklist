@@ -3,7 +3,17 @@ import {Draggable} from 'react-beautiful-dnd';
 
 const TaskList = (props) => {
 
- 
+  const handleClose = (event) =>{
+    props.handleButtonClose ({
+      value: event.target.value,
+      id: event.target.id,
+      columnStart: event.target.name,
+      
+    }
+    
+    )
+    
+  }
 
   return (
     
@@ -15,7 +25,7 @@ const TaskList = (props) => {
 
 
   {props.task.content}
-  <div><button>x</button></div>
+  <div><button onClick={handleClose} id={props.task.id} value={props.task.content} name={props.task.columnStart}>x</button></div>
 
   
      </li>

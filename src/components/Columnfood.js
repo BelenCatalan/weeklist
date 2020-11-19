@@ -14,7 +14,7 @@ function Columnfood (props) {
       < ul className={`${"column__ul"} ${snapshot.isDraggingOver ? "column__dragTrue" : "column__dragFalse"}`} ref = {provided.innerRef}{...provided.droppableProps} isdraggingover={snapshot.isDraggingOver}>
 
         {
-        props.tasks.map((task, index) => <TaskList className="js-button" key={task.id} task={task} index={index} weekColumns={props.weekColumns}/>
+        props.tasks.map((task, index) => <TaskList className="js-button" key={task.id} task={task} index={index} weekColumns={props.weekColumns} handleButtonClose={props.handleButtonClose}/>
         
         
           )

@@ -80,6 +80,8 @@ const Week = () => {
   const onDragStart = () =>{
     document.body.style.color = 'grey';
   }
+
+
   let onDragEnd = (result)=>{
     document.body.style.color='inherit';
     const {destination, source, draggableId} = result
@@ -138,7 +140,20 @@ const Week = () => {
     }
   }
 
-  
+  const handleChangeDish = (data) => {
+  const newweekColumns = {
+      ...weekColumns,
+      tasks:{
+      ...weekColumns.tasks,
+        [data.id]:{
+        id: data.id,
+        content: data.value,
+        }
+      }
+    }
+    setWeekColumns(newweekColumns)
+
+  }
 
   return (
     <div className="week__table">
@@ -169,7 +184,7 @@ const Week = () => {
 //   taskInfo.push(taskOne);
   
       
-      return <Column key={column.id} column={column} tasks={task}/>
+      return <Column key={column.id} column={column} tasks={task} handleChangeDish={handleChangeDish}/>
     
     })
   
