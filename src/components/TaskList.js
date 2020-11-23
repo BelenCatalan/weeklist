@@ -2,12 +2,15 @@ import React from 'react'
 import {Draggable} from 'react-beautiful-dnd';
 
 const TaskList = (props) => {
+  console.log(props);
 
   const handleClose = (event) =>{
+    console.log(event.target);
     props.handleButtonClose ({
       value: event.target.value,
       id: event.target.id,
       columnStart: event.target.name,
+      // columnnow: event.curretTarget,
       
     }
     

@@ -262,7 +262,75 @@ const Food = () => {
     console.log(data.id);
     console.log(data.value);
     console.log(data.columnStart);
-  }
+
+    weekColumns.columnOrder.map(columnId => {
+      const column = weekColumns.columns[columnId];     
+       column.taskIds.map((taskId, index) => {
+         console.log(taskId);
+         console.log(index);
+        if(taskId === data.id){
+          const initialColumnDelete = Array.from(column.taskIds);
+          console.log(initialColumnDelete);
+          initialColumnDelete.splice(index, 1);
+          console.log('me han encontrado')
+          console.log(initialColumnDelete);
+          // tasKIds.splice(index,1);
+
+          
+          const columnfinal = weekColumns.columns[data.columnStart];
+          console.log(columnfinal);
+          const finalColumnDelete = Array.from(columnfinal.taskIds);
+          finalColumnDelete.splice(0, 0, data.id);
+  console.log(finalColumnDelete);
+
+          const newweekColumns = {
+            ...weekColumns,
+            columns:{
+              ...weekColumns.columns,
+              [columnId]:{
+                id:columnId,
+                title:column.title,
+                taskIds:initialColumnDelete,
+              },
+              [data.columnStart]:{
+                id:columnfinal.id,
+                title:columnfinal.title,
+                taskIds:finalColumnDelete,
+              }
+              
+            }
+            
+          }
+          setWeekColumns(newweekColumns);
+          
+          
+        }
+        
+            
+          })
+          
+        })
+       
+
+        
+      }     
+
+   
+    
+
+    // console.log(columnnow);
+    // weekColumns.columns.[columnId].map(column => {
+    //   for (let i = 0; i < column.taskIds.length; i++) {
+    //     const element = column.taskIds[i];
+    //     if ( element === data.id){
+    //       console.log('soy igual');
+          
+    //     }
+        
+    //   }
+
+    // })
+  
 
   return (
     <div className="food__table">
